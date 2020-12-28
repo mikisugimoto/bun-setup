@@ -1,0 +1,13 @@
+---
+- name: Install snap packages
+  snap:
+    name: '{{ snap_packages }}'
+
+- name: Install "classic" snap packages
+  snap:
+    name: '{{ classic_snap_packages}}'
+
+- include: setup_ubuntu.yml
+  when: ansible_facts['distribution'] == "Ubuntu"
+
+  

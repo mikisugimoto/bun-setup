@@ -1,0 +1,6 @@
+---
+ubuntu_packages:
+  - git
+  - nordvpn
+  - nvidia-driver-455
+  - vim

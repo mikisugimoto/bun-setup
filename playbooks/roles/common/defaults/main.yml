@@ -1,0 +1,8 @@
+---
+classic_snap_packages:
+  - code
+  - slack
+
+snap_packages:
+  - discord
+  - spotify
