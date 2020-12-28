@@ -1,0 +1,9 @@
+---
+- name: Include OS distribution vars
+  include_vars: "{{ ansible_facts['distribution'] }}.yml"
+- name: Install Ubuntu packages
+  apt:
+    name: "{{ ubuntu_packages }}"
+    state: present
+    # updates can be enabled when Ansible has a Ubuntu 20.04 ppa
+    update_cache: no

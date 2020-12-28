@@ -1,13 +1,15 @@
 ---
 - name: Install snap packages
   snap:
-    name: '{{ snap_packages }}'
+    name: "{{ snap_packages }}"
 
 - name: Install "classic" snap packages
   snap:
-    name: '{{ classic_snap_packages}}'
+    name: "{{ classic_snap_packages }}"
+    classic: yes
 
-- include: setup_ubuntu.yml
-  when: ansible_facts['distribution'] == "Ubuntu"
+- name: Include OS distribution-specific variables
+  include_vars: "{{ ansible_facts['distribution'] }}.yml"
 
-  
+- name: Include OS distribution-specific tasks
+  include: "setup_{{ ansible_facts['distribution'] }}.yml"
