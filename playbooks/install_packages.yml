@@ -1,4 +1,6 @@
-- name: install base packages
+---
+# Install packages as root
+- name: install packages
   hosts: all
   become: yes
   become_method: sudo
