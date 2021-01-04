@@ -2,9 +2,7 @@
 all:
     children:
         linux:
-            children:
-                local:
-                    hosts:
-                        localhost:
+            hosts:
+                localhost:
                     vars:
-                        ansible_connection=local
+                        ansible_connection: local

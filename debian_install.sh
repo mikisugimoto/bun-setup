@@ -7,5 +7,5 @@ sudo apt install software-properties-common -y && \
 # there is currently no Ubuntu 20.04 ppa for Ansible
 #sudo apt-add-repository -y --update ppa:ansible/ansible && \
 sudo apt install ansible
-# install colletions
+# install collections
 ansible-galaxy collection install community.general
