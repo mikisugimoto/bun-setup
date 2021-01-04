@@ -1,0 +1,10 @@
+---
+# snap packages
+snap_packages:
+  - discord
+  - spotify
+
+# "classic" snap packages - requiring elevated permissions
+classic_snap_packages:
+  - code
+  - slack

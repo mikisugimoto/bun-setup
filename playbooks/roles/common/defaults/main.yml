@@ -1,8 +1,13 @@
 ---
-classic_snap_packages:
-  - code
-  - slack
+# base set of packages necessary to interact with a linux host
+os_packages:
+  - apt-transport-https
+  - curl
+  - vim
+  - wget
 
-snap_packages:
-  - discord
-  - spotify
+# defined in group_vars
+base_packages: []
+classic_snap_packages: []
+personal_packages: []
+snap_packages: []

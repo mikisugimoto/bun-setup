@@ -1,15 +1,17 @@
 ---
-- name: Install snap packages
+- name: Install packages
+  ansible.builtin.package:
+    state: present
+    name: "{{ lookup('community.general.flattened', os_packages, base_packages, personal_packages) }}"
+  tags:
+    - packages
+
+# snap package manager not included in ansible.builtin.package
+- name: install snap packages
   snap:
     name: "{{ snap_packages }}"
 
-- name: Install "classic" snap packages
+- name: install classic snap packages
   snap:
     name: "{{ classic_snap_packages }}"
     classic: yes
-
-- name: Include OS distribution-specific variables
-  include_vars: "{{ ansible_facts['distribution'] }}.yml"
-
-- name: Include OS distribution-specific tasks
-  include: "setup_{{ ansible_facts['distribution'] }}.yml"

@@ -1,4 +1,4 @@
 .PHONY: install_ansible
 
 install_ansible:
-	@sh ./prereq_install.sh
+	@sh ./debian_install.sh

@@ -1,0 +1,8 @@
+---
+# basic packages to set up a functional development environment
+base_packages:
+  - docker
+  - docker-compose
+  - git
+  - python3-pip
+  
