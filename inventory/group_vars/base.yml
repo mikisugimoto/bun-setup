@@ -8,4 +8,4 @@ base_packages:
   - network-manager-openvpn-gnome
   - openvpn
   - python3-pip
-  - resolveconf
+  - resolvconf

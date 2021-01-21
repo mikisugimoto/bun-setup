@@ -1,6 +1,6 @@
 ---
-# Install and configure packages on linux hosts
-- name: install packages on linux
+# Install and configure basic packages
+- name: install basic packages
   hosts: all
   become: yes
   become_method: sudo
