@@ -1,7 +1,7 @@
 ---
 # Install and configure packages on linux hosts
 - name: install packages on linux
-  hosts: linux
+  hosts: all
   become: yes
   become_method: sudo
   roles:
