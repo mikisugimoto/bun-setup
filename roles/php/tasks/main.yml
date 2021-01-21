@@ -1,0 +1,10 @@
+---
+- name: Install PHP
+  ansible.builtin.package:
+    name:
+      - composer
+      - libapache2-mod-php
+      - php
+      - php-fpm
+    state: present
+  tags: packages

@@ -13,3 +13,6 @@ all:
         snap:
             hosts:
                 TINMAN:
+        work:
+            hosts:
+                TINMAN:

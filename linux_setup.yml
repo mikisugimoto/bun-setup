@@ -1,8 +1,15 @@
 ---
-# Install and configure basic packages
+# Install and configure basic environment
 - name: install basic packages
   hosts: all
   become: yes
   become_method: sudo
   roles:
     - common
+
+# configure work development environment
+- name: install work packages
+  hosts: work
+  become: yes
+  roles:
+    - php
