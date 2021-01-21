@@ -10,8 +10,12 @@
 - name: install snap packages
   snap:
     name: "{{ snap_packages }}"
+  tags:
+    - packages
 
 - name: install classic snap packages
   snap:
     name: "{{ classic_snap_packages }}"
     classic: yes
+  tags:
+    - packages

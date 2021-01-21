@@ -4,5 +4,8 @@ base_packages:
   - docker
   - docker-compose
   - git
+  - network-manager-openvpn
+  - network-manager-openvpn-gnome
+  - openvpn
   - python3-pip
-  
+  - resolveconf
