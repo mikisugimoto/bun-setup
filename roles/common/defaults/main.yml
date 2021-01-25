@@ -1,13 +1,20 @@
 ---
-# base set of packages necessary to interact with a linux host
-os_packages:
+# base set of packages
+base_packages:
   - apt-transport-https
   - curl
+  - docker
+  - docker-compose
+  - git
+  - network-manager-openvpn
+  - network-manager-openvpn-gnome
+  - openvpn
+  - python3-pip
+  - resolvconf
   - vim
   - wget
 
 # defined in group_vars
-base_packages: []
 classic_snap_packages: []
 personal_packages: []
 snap_packages: []

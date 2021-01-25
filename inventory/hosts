@@ -4,9 +4,6 @@ all:
         localhost:
             ansible_connection: local
     children:
-        base:
-            hosts:
-                TINMAN:
         personal:
             hosts:
                 TINMAN:
