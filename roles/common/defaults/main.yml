@@ -11,8 +11,8 @@ base_packages:
   - openvpn
   - python3-pip
   - resolvconf
-  - vim
   - wget
+  - xclip
 
 # defined in group_vars
 classic_snap_packages: []

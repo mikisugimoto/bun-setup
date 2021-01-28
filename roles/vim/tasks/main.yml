@@ -1,0 +1,36 @@
+---
+- name: install vim
+  ansible.builtin.package:
+    name: vim
+    state: latest
+  tags:
+    - packages
+
+- name: create vim directories
+  ansible.builtin.file:
+    group: "{{ group }}"
+    mode: 0755
+    owner: "{{ user }}"
+    path: "{{ lookup('env', 'HOME') }}/.vim/{{ item }}"
+    state: directory
+  with_items:
+    - autoload/
+    - plugged/
+
+- name: install plugged package manager
+  ansible.builtin.get_url:
+    dest: "{{ lookup('env', 'HOME') }}/.vim/autoload/plug.vim"
+    group: "{{ group }}"
+    mode: 0644
+    owner: "{{ user }}"
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+- name: copy files
+  ansible.builtin.copy:
+    dest: "{{ lookup('env', 'HOME') }}/.vim/"
+    group: "{{ group }}"
+    mode: 0644
+    owner: "{{ user }}"
+    src: "{{ item }}"
+  with_items:
+    - vimrc
