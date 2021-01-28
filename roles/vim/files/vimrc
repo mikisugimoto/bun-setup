@@ -14,4 +14,6 @@ set linebreak
 set number relativenumber
 set wrap
 
-syntax on
+syntax enable
+
+colorscheme solarized
