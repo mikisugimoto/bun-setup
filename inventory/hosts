@@ -1,0 +1,15 @@
+---
+all:
+    hosts:
+        localhost:
+            ansible_connection: local
+    children:
+        personal:
+            hosts:
+                TINMAN:
+        snap:
+            hosts:
+                TINMAN:
+        work:
+            hosts:
+                TINMAN:

@@ -1,0 +1,19 @@
+" Install plugins
+call plug#begin('~/.vim/plugged/')
+
+Plug 'altercation/vim-colors-solarized'
+
+call plug#end()
+
+" set vim options
+set background=dark
+set backspace=indent,eol,start
+set cursorline
+set encoding=utf-8
+set linebreak
+set number relativenumber
+set wrap
+
+syntax enable
+
+colorscheme solarized

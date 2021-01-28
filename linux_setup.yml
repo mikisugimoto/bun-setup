@@ -1,0 +1,9 @@
+---
+- name: install and configure basic environment
+  hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+    - common
+    - tmux
+    - vim

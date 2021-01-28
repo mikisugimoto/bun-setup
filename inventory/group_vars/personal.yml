@@ -1,0 +1,10 @@
+---
+# additional packages to personalize the environment
+personal_packages:
+  - fontforge
+  - font-manager
+  - fonts-3270
+  - fonts-firacode
+  - nordvpn
+  - nvidia-driver-455
+  

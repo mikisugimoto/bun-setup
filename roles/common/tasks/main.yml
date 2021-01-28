@@ -1,0 +1,33 @@
+---
+- name: Install packages
+  ansible.builtin.package:
+    state: present
+    name: "{{ lookup('community.general.flattened', base_packages, personal_packages) }}"
+  tags:
+    - packages
+
+# snap package manager not included in ansible.builtin.package
+- name: install snap packages
+  snap:
+    name: "{{ snap_packages }}"
+  tags:
+    - packages
+
+- name: install classic snap packages
+  snap:
+    name: "{{ classic_snap_packages }}"
+    classic: yes
+  tags:
+    - packages
+
+- name: create docker group
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: add user to docker group
+  ansible.builtin.user:
+    append: yes
+    groups:
+      - docker
+    name: "{{ lookup('env','USER') }}"
