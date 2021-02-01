@@ -1,0 +1,31 @@
+---
+- name: install git
+  ansible.builtin.package:
+    name: git
+    state: latest
+  tags:
+    - packages
+
+- name: create git directories
+  ansible.builtin.file:
+    group: "{{ group }}"
+    mode: 0755
+    owner: "{{ user }}"
+    path: "{{ lookup('env', 'HOME') }}/.config/{{ item }}"
+    state: directory
+  with_items:
+    - git
+  tags:
+    - config
+
+- name: copy git config
+  ansible.builtin.copy:
+    dest: "{{ lookup('env', 'HOME') }}/.config/git/"
+    group: "{{ group }}"
+    mode: 0644
+    owner: "{{ user }}"
+    src: "{{ item }}"
+  with_items:
+    - config
+  tags:
+    - config
