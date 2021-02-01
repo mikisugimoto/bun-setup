@@ -5,7 +5,7 @@ base_packages:
   - curl
   - docker
   - docker-compose
-  - git
+  - jq
   - network-manager-openvpn
   - network-manager-openvpn-gnome
   - openvpn
