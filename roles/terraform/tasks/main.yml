@@ -1,0 +1,32 @@
+- name: create terraform directories
+  ansible.builtin.file:
+    group: "{{ group }}"
+    mode: 0755
+    owner: "{{ user }}"
+    path: "{{ lookup('env', 'HOME') }}/.tfenv"
+    state: directory
+  register: tf_home
+  tags:
+    - config
+
+- name: download terraform version manager
+  ansible.builtin.git:
+    clone: yes
+    dest: "{{ tf_home.path }}"
+    repo: https://github.com/tfutils/tfenv
+  tags:
+    - config
+
+- name: find all files in terraform bin directory
+  find:
+    paths:
+      - "{{ tf_home.path }}/bin"
+  register: tf_files
+
+- name: symlink terraform version manager executables
+  file:
+    dest: "/usr/local/bin/{{ item.path | basename }}"
+    src: "{{ item.path }}"
+    state: link
+  with_items:
+    - "{{ tf_files.files }}"

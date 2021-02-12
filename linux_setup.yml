@@ -6,5 +6,6 @@
   roles:
     - common
     - git
+    - terraform
     - tmux
     - vim
