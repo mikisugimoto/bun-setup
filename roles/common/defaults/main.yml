@@ -9,6 +9,7 @@ base_packages:
   - network-manager-openvpn
   - network-manager-openvpn-gnome
   - openvpn
+  - pipenv
   - python3-pip
   - resolvconf
   - wget

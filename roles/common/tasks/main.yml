@@ -31,3 +31,24 @@
     groups:
       - docker
     name: "{{ lookup('env','USER') }}"
+
+- name: get recommended NVIDIA driver version
+  shell: "ubuntu-drivers devices | grep recommended | sed -u 's/.*\\(nvidia-driver-[0-9]*\\).*/\\1/'"
+  register: driver_version
+  tags:
+    - never
+    - nvidia
+
+- name: install recommended NVIDIA driver
+  ansible.builtin.package:
+    name: "{{ driver_version.stdout }}"
+    state: present
+  tags:
+    - never
+    - nvidia
+
+- name: reboot to complete driver install
+  reboot:
+  tags:
+    - never
+    - nvidia
