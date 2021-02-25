@@ -5,6 +5,7 @@ base_packages:
   - curl
   - docker
   - docker-compose
+  - ffmpeg
   - jq
   - network-manager-openvpn
   - network-manager-openvpn-gnome
