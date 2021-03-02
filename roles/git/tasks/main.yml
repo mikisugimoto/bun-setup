@@ -29,3 +29,17 @@
     - config
   tags:
     - config
+
+- name: download git lfs
+  shell: "curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash"
+  args:
+    warn: false
+  tags:
+    - config
+
+- name: install git lfs
+  ansible.builtin.package:
+    state: present
+    name: git-lfs
+  tags:
+    - config
