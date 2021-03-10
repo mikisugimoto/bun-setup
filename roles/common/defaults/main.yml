@@ -2,6 +2,7 @@
 # base set of packages
 base_packages:
   - apt-transport-https
+  - cmdtest
   - curl
   - docker
   - docker-compose

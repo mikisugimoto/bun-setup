@@ -1,0 +1,12 @@
+---
+dotnet_packages:
+  - virtualbox
+  - virtualbox-dkms
+  - virtualbox-ext-pack
+  - virtualbox-guest-additions-iso
+  - virtualbox-guest-utils
+  - virtualbox-qt
+  - virtualbox-guest-x11
+
+user: "{{ lookup('env', 'USER') }}"
+group: "{{ lookup('env', 'USER') }}"

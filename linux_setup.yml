@@ -5,7 +5,20 @@
   become_method: sudo
   roles:
     - common
+
+- name: setup development environment
+  hosts: development
+  become: yes
+  become_method: sudo
+  roles:
     - git
-    - terraform
     - tmux
     - vim
+
+- name: install development tools
+  hosts: development
+  become: yes
+  become_method: sudo
+  roles:
+    - dotnet
+    - terraform

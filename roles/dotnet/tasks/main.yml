@@ -1,0 +1,13 @@
+---
+- name: download VirtualBox Extension Pack
+  get_url:
+    dest: "{{ lookup('env', 'HOME') }}"
+    url: https://download.virtualbox.org/virtualbox/6.1.18/Oracle_VM_VirtualBox_Extension_Pack-6.1.18.vbox-extpack
+  register: vboxmanage
+  tags:
+    - packages
+
+- name: install VirtualBox
+  shell: "echo y | sudo VBoxManage extpack install --replace {{ vboxmanage.dest }}"
+  tags:
+    - packages

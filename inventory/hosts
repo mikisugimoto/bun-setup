@@ -4,6 +4,14 @@ all:
         localhost:
             ansible_connection: local
     children:
+        development:
+            children:
+                dotnet:
+                    hosts:
+                        TINMAN:
+                terraform:
+                    hosts:
+                        TINMAN:
         personal:
             hosts:
                 TINMAN:
