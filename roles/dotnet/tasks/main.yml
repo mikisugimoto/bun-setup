@@ -1,13 +1,21 @@
 ---
 - name: download VirtualBox Extension Pack
   get_url:
-    dest: "{{ lookup('env', 'HOME') }}"
-    url: https://download.virtualbox.org/virtualbox/6.1.18/Oracle_VM_VirtualBox_Extension_Pack-6.1.18.vbox-extpack
+    dest: "{{ lookup('env', 'HOME') }}/Downloads"
+    url: "https://download.virtualbox.org/virtualbox/{{ virtualbox_version }}/Oracle_VM_VirtualBox_Extension_Pack-{{ virtualbox_version }}.vbox-extpack"
   register: vboxmanage
   tags:
     - packages
 
 - name: install VirtualBox
   shell: "echo y | sudo VBoxManage extpack install --replace {{ vboxmanage.dest }}"
+  tags:
+    - packages
+
+- name: install Vagrant
+  ansible.builtin.unarchive:
+    dest: /usr/local/bin
+    remote_src: yes
+    src: "https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_linux_amd64.zip"
   tags:
     - packages

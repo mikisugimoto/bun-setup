@@ -10,3 +10,5 @@ dotnet_packages:
 
 user: "{{ lookup('env', 'USER') }}"
 group: "{{ lookup('env', 'USER') }}"
+vagrant_version: "2.2.14"
+virtualbox_version: "6.1.18"
