@@ -20,6 +20,11 @@
   tags:
     - packages
 
+- name: refresh snap packages
+  shell: "snap refresh"
+  tags:
+    - packages
+
 - name: create docker group
   ansible.builtin.group:
     name: docker

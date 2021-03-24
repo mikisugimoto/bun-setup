@@ -19,3 +19,18 @@
     src: "https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_linux_amd64.zip"
   tags:
     - packages
+
+- name: Install additional packages
+  ansible.builtin.package:
+    name: "{{ lookup('community.general.flattened', dotnet_packages) }}"
+    state: present
+  tags:
+    - packages
+
+- name: install pip packages
+  pip:
+    executable: pip3
+    name: "{{ lookup('community.general.flattened', pip_packages) }}"
+    state: present
+  tags:
+    - packages
