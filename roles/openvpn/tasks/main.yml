@@ -1,0 +1,19 @@
+---
+- name: Add apt signing keys for OpenVPN3
+  ansible.builtin.apt_key:
+    url: https://swupdate.openvpn.net/repos/openvpn-repo-pkg-key.pub
+    state: present
+
+- name: Add apt repositories for OpenVPN3
+  ansible.builtin.get_url:
+    dest: /etc/apt/sources.list.d/openvpn3.list
+    url: "https://swupdate.openvpn.net/community/openvpn3/repos/openvpn3-{{ ansible_distribution_release }}.list"
+
+- name: Install OPenVPN3
+  ansible.builtin.apt:
+    state: present
+    name: openvpn3
+    update_cache: yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags:
+    - packages

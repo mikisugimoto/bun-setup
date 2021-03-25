@@ -1,6 +1,7 @@
 ---
 # snap packages
 snap_packages:
+  - dbeaver-ce
   - discord
   - spotify
 

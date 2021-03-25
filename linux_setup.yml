@@ -22,3 +22,10 @@
   roles:
     - dotnet
     - terraform
+
+- name: install work configurations
+  hosts: work
+  become: yes
+  become_method: sudo
+  roles:
+    - openvpn

@@ -29,6 +29,8 @@
   ansible.builtin.group:
     name: docker
     state: present
+  tags:
+    - config
 
 - name: add user to docker group
   ansible.builtin.user:
@@ -36,6 +38,13 @@
     groups:
       - docker
     name: "{{ lookup('env','USER') }}"
+  tags:
+    - config
+
+- name: Restart network
+  service:
+    name: network-manager
+    state: restarted
 
 - name: get recommended NVIDIA driver version
   shell: "ubuntu-drivers devices | grep recommended | sed -u 's/.*\\(nvidia-driver-[0-9]*\\).*/\\1/'"
