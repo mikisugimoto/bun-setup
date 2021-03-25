@@ -21,3 +21,6 @@ base_packages:
 classic_snap_packages: []
 personal_packages: []
 snap_packages: []
+
+user: "{{ lookup('env', 'USER') }}"
+group: "{{ lookup('env', 'USER') }}"

@@ -25,6 +25,19 @@
   tags:
     - packages
 
+- name: copy dotfiles
+  ansible.builtin.copy:
+    dest: "{{ lookup('env', 'HOME') }}/.{{ item | basename }}"
+    force: yes
+    group: "{{ group }}"
+    mode: 0644
+    owner: "{{ user }}"
+    src: "{{ item }}"
+  with_fileglob:
+    - "files/*"
+  tags:
+    - config
+
 - name: create docker group
   ansible.builtin.group:
     name: docker
