@@ -3,7 +3,6 @@ os_packages:
   - apt-transport-https
   - ca-certificates
   - cmdtest
-  - docker-compose
   - ffmpeg
   - gnupg
   - hddtemp

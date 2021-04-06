@@ -21,6 +21,20 @@
   tags:
     - packages
 
+- name: Get latest docker-compose tag
+  shell: "curl --silent 'https://api.github.com/repos/docker/compose/releases/latest' | jq -r '.tag_name'"
+  register: compose_version
+  tags:
+    - packages
+
+- name: Install docker-compose
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/{{ compose_version.stdout }}/docker-compose-{{ ansible_system }}-{{ ansible_userspace_architecture }}"
+    dest: /usr/local/bin/docker-compose
+    mode: +x
+  tags:
+    - packages
+
 - name: Restart network
   service:
     name: network-manager
