@@ -1,29 +1,21 @@
 ---
-# base set of packages
-base_packages:
-  - apt-transport-https
-  - cmdtest
+# packages which have the same name across (most) distros
+common_packages:
   - curl
-  - docker
-  - docker-compose
-  - ffmpeg
-  - hddtemp
   - jq
-  - lm-sensors
-  - network-manager-openvpn
-  - network-manager-openvpn-gnome
-  - openvpn
-  - pipenv
-  - psensor
-  - python3-pip
-  - resolvconf
   - wget
-  - xclip
 
-# defined in group_vars
-classic_snap_packages: []
-personal_packages: []
+## defined in group_vars
 snap_packages: []
+classic_snap_packages: []
+# old versions of packages that may still come as standard on the OS
+deprecated_packages: []
+# docker package names specific to an OS
+docker_packages: []
+# packages which are common, but name may vary depending on the OS
+os_packages: []
+# packages to install on a personal computer
+personal_packages: []
 
 user: "{{ lookup('env', 'USER') }}"
 group: "{{ lookup('env', 'USER') }}"

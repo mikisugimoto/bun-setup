@@ -18,6 +18,9 @@ all:
         snap:
             hosts:
                 TINMAN:
+        ubuntu:
+            hosts:
+                TINMAN:
         work:
             hosts:
                 TINMAN:

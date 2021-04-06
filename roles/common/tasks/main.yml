@@ -2,7 +2,18 @@
 - name: Install packages
   ansible.builtin.package:
     state: present
-    name: "{{ lookup('community.general.flattened', base_packages, personal_packages) }}"
+    name: "{{ lookup('community.general.flattened', common_packages, os_packages, personal_packages) }}"
+  tags:
+    - packages
+
+- name: install and configure os-specific packages
+  import_tasks: ubuntu.yml
+  when: ansible_distribution|lower == 'ubuntu'
+
+- name: Remove old packages
+  ansible.builtin.package:
+    state: absent
+    name: "{{ lookup('community.general.flattened', deprecated_packages) }}"
   tags:
     - packages
 
@@ -53,29 +64,3 @@
     name: "{{ lookup('env','USER') }}"
   tags:
     - config
-
-- name: Restart network
-  service:
-    name: network-manager
-    state: restarted
-
-- name: get recommended NVIDIA driver version
-  shell: "ubuntu-drivers devices | grep recommended | sed -u 's/.*\\(nvidia-driver-[0-9]*\\).*/\\1/'"
-  register: driver_version
-  tags:
-    - never
-    - nvidia
-
-- name: install recommended NVIDIA driver
-  ansible.builtin.package:
-    name: "{{ driver_version.stdout }}"
-    state: present
-  tags:
-    - never
-    - nvidia
-
-- name: reboot to complete driver install
-  reboot:
-  tags:
-    - never
-    - nvidia

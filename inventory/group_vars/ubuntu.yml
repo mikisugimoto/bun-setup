@@ -1,0 +1,31 @@
+---
+os_packages:
+  - apt-transport-https
+  - ca-certificates
+  - cmdtest
+  - docker-compose
+  - ffmpeg
+  - gnupg
+  - hddtemp
+  - lm-sensors
+  - lsb-release
+  - network-manager-openvpn
+  - network-manager-openvpn-gnome
+  - openvpn
+  - pipenv
+  - psensor
+  - python3-pip
+  - resolvconf
+  - xclip
+
+deprecated_packages:
+  - containerd
+  - docker
+  - docker-engine
+  - docker.io
+  - runc
+
+docker_packages:
+  - containerd.io
+  - docker-ce
+  - docker-ce-cli
