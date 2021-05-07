@@ -1,0 +1,13 @@
+profile: "{{ lookup('env', 'HOME') }}/.profile"
+pyenv_dest: "{{ lookup('env', 'HOME') }}/.pyenv"
+
+pip_packages:
+  - ansible
+
+python_versions:
+  - 3.9.5
+  - 3.8.10
+  - 2.7.18
+
+user: "{{ lookup('env', 'USER') }}"
+group: "{{ lookup('env', 'USER') }}"

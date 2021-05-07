@@ -10,4 +10,6 @@ install_ansible:
 run_linux:
 		ansible-playbook -K linux_setup.yml -c local --limit $(host)
 
+.PHONY: check_linux
 .PHONY: install_ansible
+.PHONY: run_linux

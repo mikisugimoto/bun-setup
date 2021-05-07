@@ -12,6 +12,7 @@
   become_method: sudo
   roles:
     - git
+    - python
     - tmux
     - vim
 

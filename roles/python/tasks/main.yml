@@ -1,0 +1,61 @@
+---
+- name: Clone pyenv repo
+  ansible.builtin.git:
+    dest: "{{ pyenv_dest }}"
+    repo: "https://github.com/pyenv/pyenv.git"
+  tags:
+    - packages
+
+- name: Set pyenv repo permissions
+  ansible.builtin.file:
+    group: "{{ user }}"
+    owner: "{{ user }}"
+    path: "{{ pyenv_dest }}"
+    recurse: true
+  tags:
+    - config
+
+- name: Enable dynamic bash extension
+  shell: "./src/configure && make -C src"
+  args:
+    chdir: "{{ pyenv_dest }}"
+  tags:
+    - config
+
+- name: Add pyenv root to shell configuration
+  ansible.builtin.lineinfile:
+    line: 'export PYENV_ROOT="{{ pyenv_dest }}"'
+    path: "{{ profile }}"
+  tags:
+    - config
+
+- name: Add pyenv root to PATH
+  ansible.builtin.lineinfile:
+    line: 'export PATH="$PYENV_ROOT/bin:$PATH"'
+    path: "{{ profile }}"
+  tags:
+    - config
+
+- name: Add pyenv to shell
+  ansible.builtin.lineinfile:
+    line: 'if command -v pyenv 1>/dev/null 2>&1; then  eval "$(pyenv init -)"; fi'
+    path: "{{ profile }}"
+  tags:
+    - config
+
+- name: Install Python versions
+  shell: ". {{ profile }}; pyenv install -s {{ item }}"
+  with_items: "{{ python_versions }}"
+  #failed_when: "pyenv_versions.rc != 0 and pyenv_versions.stderr is not search('already exists')"
+  register: pyenv_versions
+  tags:
+    - packages
+
+- name: Set global python default versions
+  shell: ". {{ profile }}; pyenv global {{ python_versions | join(' ') }}"
+  tags:
+    - config
+
+- name: install pip packages
+  pip:
+    name: "{{ pip_packages }}"
