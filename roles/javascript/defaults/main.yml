@@ -1,0 +1,8 @@
+user: "{{ lookup('env', 'USER') }}"
+group: "{{ lookup('env', 'USER') }}"
+
+node_versions:
+  - "lts/*"
+  - node # latest
+  - 12.21.0
+profile: "{{ lookup('env', 'HOME') }}/.profile"

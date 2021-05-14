@@ -22,31 +22,28 @@
   tags:
     - config
 
-- name: Add pyenv root to shell configuration
+- name: Add pyenv to profile
   ansible.builtin.lineinfile:
-    line: 'export PYENV_ROOT="{{ pyenv_dest }}"'
+    insertbefore: "if running bash"
+    line: "{{ item }}"
     path: "{{ profile }}"
+  with_items:
+    - 'export PYENV_ROOT="{{ pyenv_dest }}"'
+    - 'export PATH="$PYENV_ROOT/bin:$PATH"'
+    - 'eval "$(pyenv init --path)"'
   tags:
     - config
 
-- name: Add pyenv root to PATH
+- name: Add pyenv to bash profile
   ansible.builtin.lineinfile:
-    line: 'export PATH="$PYENV_ROOT/bin:$PATH"'
-    path: "{{ profile }}"
-  tags:
-    - config
-
-- name: Add pyenv to shell
-  ansible.builtin.lineinfile:
-    line: 'if command -v pyenv 1>/dev/null 2>&1; then  eval "$(pyenv init -)"; fi'
-    path: "{{ profile }}"
+    line: 'eval "$(pyenv init -)"'
+    path: "~/.bashrc"
   tags:
     - config
 
 - name: Install Python versions
   shell: ". {{ profile }}; pyenv install -s {{ item }}"
   with_items: "{{ python_versions }}"
-  #failed_when: "pyenv_versions.rc != 0 and pyenv_versions.stderr is not search('already exists')"
   register: pyenv_versions
   tags:
     - packages
@@ -55,6 +52,13 @@
   shell: ". {{ profile }}; pyenv global {{ python_versions | join(' ') }}"
   tags:
     - config
+
+- name: Install packages
+  ansible.builtin.package:
+    state: present
+    name: "{{ lookup('community.general.flattened', python_packages) }}"
+  tags:
+    - packages
 
 - name: install pip packages
   pip:

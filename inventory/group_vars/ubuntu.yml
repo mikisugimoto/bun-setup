@@ -21,13 +21,11 @@ os_packages:
   - lm-sensors
   - lsb-release
   - make
+  - net-tools
   - network-manager-openvpn
   - network-manager-openvpn-gnome
   - openvpn
-  - pipenv
   - psensor
-  - python-openssl
-  - python3-pip
   - resolvconf
   - tk-dev
   - xclip
@@ -45,3 +43,8 @@ docker_packages:
   - containerd.io
   - docker-ce
   - docker-ce-cli
+
+python_packages:
+  - pipenv
+  - python-openssl
+  - python3-pip
