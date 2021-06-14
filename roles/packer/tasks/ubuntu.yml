@@ -1,0 +1,19 @@
+- name: Add Packer GPG key
+  ansible.builtin.apt_key:
+    url: "https://apt.releases.hashicorp.com/gpg"
+  register: packer_key
+  tags:
+    - packages
+
+- name: Set up Packer repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release | lower }} main"
+  tags:
+    - packages
+
+- name: Install Packer packages
+  ansible.builtin.package:
+    state: present
+    name: "{{ lookup('community.general.flattened', packer_packages) }}"
+  tags:
+    - packages

@@ -1,0 +1,4 @@
+---
+- name: install and configure os-specific Packer
+  import_tasks: ubuntu.yml
+  when: ansible_distribution|lower == 'ubuntu'

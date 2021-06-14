@@ -26,6 +26,7 @@ os_packages:
   - network-manager-openvpn-gnome
   - openvpn
   - psensor
+  - r8168-dkms
   - resolvconf
   - tk-dev
   - xclip
@@ -43,6 +44,9 @@ docker_packages:
   - containerd.io
   - docker-ce
   - docker-ce-cli
+
+packer_packages:
+  - packer
 
 python_packages:
   - pipenv

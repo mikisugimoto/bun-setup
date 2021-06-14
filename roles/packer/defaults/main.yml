@@ -1,0 +1,6 @@
+---
+## defined in group_vars
+packer_packages: []
+
+user: "{{ lookup('env', 'USER') }}"
+group: "{{ lookup('env', 'USER') }}"
