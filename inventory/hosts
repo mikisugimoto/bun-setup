@@ -19,8 +19,10 @@ all:
             hosts:
                 TINMAN:
         ubuntu:
-            hosts:
-                TINMAN:
+            children:
+                hirsute:
+                    hosts:
+                        TINMAN:
         work:
             hosts:
                 TINMAN:

@@ -37,7 +37,7 @@
 
 - name: Restart network
   service:
-    name: network-manager
+    name: NetworkManager
     state: restarted
   tags:
     - config
